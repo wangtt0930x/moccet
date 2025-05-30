@@ -41,7 +41,7 @@ if uploaded_file is not None:
 
     agent_capacity = st.slider("Agent Total Compute Capacity", 100, 5000, 1000)
 
-    optimizer = PriceOptimizer(min_margin=0.15, risk_weight=0.1)
+    optimizer = PriceOptimizer()
     prices = optimizer.optimize_prices(task_list, agent_capacity)
 
     st.write("### 💰 Optimized Prices:")
