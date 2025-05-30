@@ -48,9 +48,12 @@ class PriceOptimizer:
         m.optimize()
 
         results = {}
-        for task in tasks:
-            tid = task['id']
-            if accept[tid].X > 0.5:
-                results[tid] = price[tid].X
+        if m.status == GRB.OPTIMAL:
+            for task in tasks:
+                tid = task['id']
+                if accept[tid].X > 0.5:
+                    results[tid] = price[tid].X
+        else:
+            print(f\"Gurobi optimization status: {m.status}\")
 
         return results
