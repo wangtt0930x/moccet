@@ -46,7 +46,11 @@ if uploaded_file is not None:
 
     st.write("### 💰 Optimized Prices:")
     result_df = pd.DataFrame.from_dict(prices, orient='index', columns=["Suggested Price"])
+    try:
+        result_df["Suggested Price"] = result_df["Suggested Price"].astype(float)
+        st.dataframe(result_df.style.format("${:.2f}"))
+    except:
+        st.dataframe(result_df)
     result_df.index.name = "Task ID"
-    st.dataframe(result_df.style.format("${:.2f}"))
 
     st.download_button("📥 Download Price Table", result_df.to_csv().encode(), file_name="optimized_prices.csv", mime="text/csv")
