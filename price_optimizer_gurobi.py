@@ -29,7 +29,8 @@ class PriceOptimizer:
         )
 
         # Removed hard urgency constraint to avoid infeasibility
-
+        m.setParam('TimeLimit', 60)
+        m.setParam('MIPFocus', 1)  # optional, focus on finding feasible solutions faster
         m.optimize()
 
         print(f"Optimization Status: {m.status}")
