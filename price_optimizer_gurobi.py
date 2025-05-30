@@ -54,6 +54,6 @@ class PriceOptimizer:
                 if accept[tid].X > 0.5:
                     results[tid] = price[tid].X
         else:
-            print(f\"Gurobi optimization status: {m.status}\")
+            print(f"Gurobi optimization status: {m.status}")
 
         return results
